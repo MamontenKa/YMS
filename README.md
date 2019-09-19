@@ -3,9 +3,9 @@
 
 <H3>Установка</h3>
 
-git clone https://github.com/MamontenKa/YMS.git
+1. git clone https://github.com/MamontenKa/YMS.git
 
-pip install -r requirements.txt
+2. pip install -r requirements.txt
 
 <H3>Сбор данных</h3>
 
