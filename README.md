@@ -1,7 +1,7 @@
 # YMS
 Сбор и анализ статистики Яндекс Музыка
 
-Установка
+<H3>Установка
 
 git clone https://github.com/MamontenKa/YMS.git
 
