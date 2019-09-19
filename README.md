@@ -1,17 +1,17 @@
 # YMS
 Сбор и анализ статистики Яндекс Музыка
 
-<H3>Установка</h3>
+### h3 Установка
 
 1. git clone https://github.com/MamontenKa/YMS.git
 
 2. pip install -r requirements.txt
 
-<H3>Сбор данных</h3>
+### h3 Сбор данных
 
 python downloder.py --login=login --password=password
 
-<H3>Запуск анализа</h3>
+### h3 Запуск анализа
 
 ipython notebook
 
