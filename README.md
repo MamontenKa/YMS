@@ -9,7 +9,7 @@
 
 ### Сбор данных
 
-python downloder.py --login=login --password=password
+python downloader.py --login=login --password=password
 
 ### Запуск анализа
 
