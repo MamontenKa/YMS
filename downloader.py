@@ -79,19 +79,22 @@ class Yandex:
         return track_ids
 
     def update_library(self, tracks, track_ids_old):
-        for track, track_id_old in zip(tracks, track_ids_old):
-            track_id = str(track['id'])
-            if self.tracks_library.get(track_id_old) is None and track['type'] == 'music':
-                album = track['albums'][0] if len(track['albums']) > 0 else None
-                duration_sec = track.get('durationMs') // 1000 if track.get('durationMs') else None
-
-                self.tracks_library[track_id_old] = {
-                    'artist': track['artists'][0]['name'], 'artist_id': track['artists'][0]['id'],
-                    'album': album['title'] if album else None, 'album_id': album['id'] if album else None,
-                    'track': track['title'], 'track_id': track_id,
-                    'duration_sec': duration_sec, 'year': album.get('year') if album else None,
-                    'genre': album.get('genre') if album else None,
-                }
+        try:
+            for track, track_id_old in zip(tracks, track_ids_old):
+                track_id = str(track['id'])
+                if self.tracks_library.get(track_id_old) is None and track['type'] == 'music':
+                    album = track['albums'][0] if len(track['albums']) > 0 else None
+                    duration_sec = track.get('durationMs') // 1000 if track.get('durationMs') else None
+                    
+                    self.tracks_library[track_id_old] = {
+                        'artist': track['artists'][0]['name'], 'artist_id': track['artists'][0]['id'],
+                        'album': album['title'] if album else None, 'album_id': album['id'] if album else None,
+                        'track': track['title'], 'track_id': track_id,
+                        'duration_sec': duration_sec, 'year': album.get('year') if album else None,
+                        'genre': album.get('genre') if album else None,
+                        }
+        except Exception:
+            pass
 
     def get_tracks_data(self, track_ids):
         if self.sign is None:
@@ -114,7 +117,7 @@ class Yandex:
 
             sleep(3)
 
-    def download_and_safe_tracks(self):
+    def download_and_save_tracks(self):
         track_ids = self.get_track_ids()
         self.get_tracks_data(track_ids)
         self.save_csv(track_ids)
@@ -191,4 +194,4 @@ if __name__ == '__main__':
     yandex = Yandex(args.login, args.password)
     # yandex = Yandex(config.login, config.password)
     yandex.auth()
-    yandex.download_and_safe_tracks()
+    yandex.download_and_save_tracks()
